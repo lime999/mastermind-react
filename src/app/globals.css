@@ -49,3 +49,42 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.lock-in-btn {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75em 2em;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 1em 0;
+}
+
+.lock-in-btn:hover {
+  background-color: #388e3c;
+  outline: none;
+}
+
+.lock-in-btn:focus {
+  outline: none;
+}
+
+.lock-in-btn:active {
+  background-color: #9e1414;
+}
+
+.side-panel {
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: sticky;
+  top: 20px;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
