@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "mastermind",
-  description: "mastermind game",
+  title: "tic tac toe",
+  description: "tic tac toe",
 };
 
 export default function RootLayout({

@@ -28,13 +28,6 @@ body {
   padding: 0;
 }
 
-
-.board-row {
-  position: fixed;
-  inset: 0px;
-  margin: auto;
-}
-
 .pin {
   display: inline-block;
   width: 20px;
@@ -44,4 +37,15 @@ body {
   border: 2px solid #222;
   margin: 2px;
   vertical-align: middle;
+}
+
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
 }
