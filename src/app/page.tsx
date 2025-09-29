@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+
 type SquareProps = {
   background: number;
   onSquareClick?: () => void;
@@ -24,12 +25,34 @@ function allowedColors() {
 }
 
 export default function Board() {
-
+  const [solution, setSolution] = useState(() => {
+    let a = [];
+    for (let i = 0; i < 4; i++) {
+      let randomNumber: number = Math.floor(Math.random() * 7) + 1;
+      a.push(colors[randomNumber]);
+    }
+    return a;
+  });
+  
+  const [alertMessage, setAlertMessage] = useState("");
   const [round, setRound] = useState(1);
   const [pins, setPins] = useState(Array(40).fill(0));
 
+  function checkSolution() {
+    let currentGuess = pins.slice((round - 1) * 4, round * 4);
+    if (currentGuess.includes(0)) {
+      setAlertMessage("You must fill in all pins before locking in your solution.");
+      return;
+    }
+
+
+
+
+    setRound(round + 1);
+  }
+
   function handleClick(i: number) {
-    if (i > round * 4 - 1) {
+    if (i > round * 4 - 1 || i < (round * 4 - 4)) {
       return;
     }
     const nextPins = pins.slice();
@@ -40,7 +63,7 @@ export default function Board() {
       nextColor = 0;
     } else {
 
-      nextColor = (pins[i]) + 1;
+      nextColor = pins[i] + 1;
     }
 
     nextPins[i] = nextColor;
@@ -115,9 +138,10 @@ export default function Board() {
         </div>
       </div>
       <div className="side-panel">
-        <button className="lock-in-btn">Lock In</button>
+        <button className="check-solution-btn" onClick={checkSolution}>Lock In</button>
+        <h2>{alertMessage}</h2>
         <h1>Round {round}/10</h1>
-        <h1>These are the allowed colors:</h1>
+        <h1>These are the allowed colors in the order you can select:</h1>
         <div>
           {allowedColors()}
         </div>
