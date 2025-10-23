@@ -1,12 +1,11 @@
-import { colors } from './pinColors';
-import { useState } from 'react';
-export function generateSolution() {  
 
-    let solution = [];
-    for (let i = 0; i < 4; i++) {
-      let randomNumber: number = Math.floor(Math.random() * 7) + 1;
-      solution.push(colors[randomNumber]);
-    }
-    return solution;
 
+export function generateSolution(): number[] {
+  let solution: number[] = [];
+  for (let i = 0; i < 4; i++) {
+    let randomNumber: number = Math.floor(Math.random() * 8)
+    solution.push(randomNumber);
+  }
+  console.log("Solution generated:", solution);
+  return solution;
 }
