@@ -1,55 +1,34 @@
 'use client';
 
 import { useState } from 'react';
+import { colors } from './pinColors';
+import { exampleColors } from './exampleColors';
+import { generateSolution } from './generateSolution';
+import { checkSolution } from './checkSolution';
 
 
-type SquareProps = {
+type pinProps = {
   background: number;
-  onSquareClick?: () => void;
+  onPinClick?: () => void;
 };
-const colors =
-  ["#000000ff", "#ff0000ff", "#00ff00ff", "#0000ffff",
-    "#ffff00ff", "#00ffffff", "#ff00ffff", "#ffffffff"]
 
-function Pin({ background, onSquareClick }: SquareProps) {
+function Pin({ background, onPinClick }: pinProps) {
 
-  return <button style={{ background: colors[background] }} className="pin" onClick={onSquareClick}></button>;
+  return <button style={{ background: colors[background] }} className="pin" onClick={onPinClick}></button>;
 
 }
-function allowedColors() {
-  const buttons = [];
-  for (let i = 1; i < 8; i++) {
-    buttons.push(<button key={i} className="pin" style={{ backgroundColor: colors[i] }}></button>);
-  }
-  return buttons;
-}
+
+
 
 export default function Board() {
-  const [solution, setSolution] = useState(() => {
-    let a = [];
-    for (let i = 0; i < 4; i++) {
-      let randomNumber: number = Math.floor(Math.random() * 7) + 1;
-      a.push(colors[randomNumber]);
-    }
-    return a;
-  });
+
+  const [solution, setSolution] = useState(() => {generateSolution()});
   
   const [alertMessage, setAlertMessage] = useState("");
   const [round, setRound] = useState(1);
   const [pins, setPins] = useState(Array(40).fill(0));
 
-  function checkSolution() {
-    let currentGuess = pins.slice((round - 1) * 4, round * 4);
-    if (currentGuess.includes(0)) {
-      setAlertMessage("You must fill in all pins before locking in your solution.");
-      return;
-    }
 
-
-
-
-    setRound(round + 1);
-  }
 
   function handleClick(i: number) {
     if (i > round * 4 - 1 || i < (round * 4 - 4)) {
@@ -77,73 +56,73 @@ export default function Board() {
     <div className="game">
       <div>
         <div className="board-row">
-          <Pin background={pins[0]} onSquareClick={() => handleClick(0)} />
-          <Pin background={pins[1]} onSquareClick={() => handleClick(1)} />
-          <Pin background={pins[2]} onSquareClick={() => handleClick(2)} />
-          <Pin background={pins[3]} onSquareClick={() => handleClick(3)} />
+          <Pin background={pins[0]} onPinClick={() => handleClick(0)} />
+          <Pin background={pins[1]} onPinClick={() => handleClick(1)} />
+          <Pin background={pins[2]} onPinClick={() => handleClick(2)} />
+          <Pin background={pins[3]} onPinClick={() => handleClick(3)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[4]} onSquareClick={() => handleClick(4)} />
-          <Pin background={pins[5]} onSquareClick={() => handleClick(5)} />
-          <Pin background={pins[6]} onSquareClick={() => handleClick(6)} />
-          <Pin background={pins[7]} onSquareClick={() => handleClick(7)} />
+          <Pin background={pins[4]} onPinClick={() => handleClick(4)} />
+          <Pin background={pins[5]} onPinClick={() => handleClick(5)} />
+          <Pin background={pins[6]} onPinClick={() => handleClick(6)} />
+          <Pin background={pins[7]} onPinClick={() => handleClick(7)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[8]} onSquareClick={() => handleClick(8)} />
-          <Pin background={pins[9]} onSquareClick={() => handleClick(9)} />
-          <Pin background={pins[10]} onSquareClick={() => handleClick(10)} />
-          <Pin background={pins[11]} onSquareClick={() => handleClick(11)} />
+          <Pin background={pins[8]} onPinClick={() => handleClick(8)} />
+          <Pin background={pins[9]} onPinClick={() => handleClick(9)} />
+          <Pin background={pins[10]} onPinClick={() => handleClick(10)} />
+          <Pin background={pins[11]} onPinClick={() => handleClick(11)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[12]} onSquareClick={() => handleClick(12)} />
-          <Pin background={pins[13]} onSquareClick={() => handleClick(13)} />
-          <Pin background={pins[14]} onSquareClick={() => handleClick(14)} />
-          <Pin background={pins[15]} onSquareClick={() => handleClick(15)} />
+          <Pin background={pins[12]} onPinClick={() => handleClick(12)} />
+          <Pin background={pins[13]} onPinClick={() => handleClick(13)} />
+          <Pin background={pins[14]} onPinClick={() => handleClick(14)} />
+          <Pin background={pins[15]} onPinClick={() => handleClick(15)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[16]} onSquareClick={() => handleClick(16)} />
-          <Pin background={pins[17]} onSquareClick={() => handleClick(17)} />
-          <Pin background={pins[18]} onSquareClick={() => handleClick(18)} />
-          <Pin background={pins[19]} onSquareClick={() => handleClick(19)} />
+          <Pin background={pins[16]} onPinClick={() => handleClick(16)} />
+          <Pin background={pins[17]} onPinClick={() => handleClick(17)} />
+          <Pin background={pins[18]} onPinClick={() => handleClick(18)} />
+          <Pin background={pins[19]} onPinClick={() => handleClick(19)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[20]} onSquareClick={() => handleClick(20)} />
-          <Pin background={pins[21]} onSquareClick={() => handleClick(21)} />
-          <Pin background={pins[22]} onSquareClick={() => handleClick(22)} />
-          <Pin background={pins[23]} onSquareClick={() => handleClick(23)} />
+          <Pin background={pins[20]} onPinClick={() => handleClick(20)} />
+          <Pin background={pins[21]} onPinClick={() => handleClick(21)} />
+          <Pin background={pins[22]} onPinClick={() => handleClick(22)} />
+          <Pin background={pins[23]} onPinClick={() => handleClick(23)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[24]} onSquareClick={() => handleClick(24)} />
-          <Pin background={pins[25]} onSquareClick={() => handleClick(25)} />
-          <Pin background={pins[26]} onSquareClick={() => handleClick(26)} />
-          <Pin background={pins[27]} onSquareClick={() => handleClick(27)} />
+          <Pin background={pins[24]} onPinClick={() => handleClick(24)} />
+          <Pin background={pins[25]} onPinClick={() => handleClick(25)} />
+          <Pin background={pins[26]} onPinClick={() => handleClick(26)} />
+          <Pin background={pins[27]} onPinClick={() => handleClick(27)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[28]} onSquareClick={() => handleClick(28)} />
-          <Pin background={pins[29]} onSquareClick={() => handleClick(29)} />
-          <Pin background={pins[30]} onSquareClick={() => handleClick(30)} />
-          <Pin background={pins[31]} onSquareClick={() => handleClick(31)} />
+          <Pin background={pins[28]} onPinClick={() => handleClick(28)} />
+          <Pin background={pins[29]} onPinClick={() => handleClick(29)} />
+          <Pin background={pins[30]} onPinClick={() => handleClick(30)} />
+          <Pin background={pins[31]} onPinClick={() => handleClick(31)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[32]} onSquareClick={() => handleClick(32)} />
-          <Pin background={pins[33]} onSquareClick={() => handleClick(33)} />
-          <Pin background={pins[34]} onSquareClick={() => handleClick(34)} />
-          <Pin background={pins[35]} onSquareClick={() => handleClick(35)} />
+          <Pin background={pins[32]} onPinClick={() => handleClick(32)} />
+          <Pin background={pins[33]} onPinClick={() => handleClick(33)} />
+          <Pin background={pins[34]} onPinClick={() => handleClick(34)} />
+          <Pin background={pins[35]} onPinClick={() => handleClick(35)} />
         </div>
         <div className="board-row">
-          <Pin background={pins[36]} onSquareClick={() => handleClick(36)} />
-          <Pin background={pins[37]} onSquareClick={() => handleClick(37)} />
-          <Pin background={pins[38]} onSquareClick={() => handleClick(38)} />
-          <Pin background={pins[39]} onSquareClick={() => handleClick(39)} />
+          <Pin background={pins[36]} onPinClick={() => handleClick(36)} />
+          <Pin background={pins[37]} onPinClick={() => handleClick(37)} />
+          <Pin background={pins[38]} onPinClick={() => handleClick(38)} />
+          <Pin background={pins[39]} onPinClick={() => handleClick(39)} />
         </div>
       </div>
       <div className="side-panel">
         <button className="check-solution-btn" onClick={checkSolution}>Lock In</button>
         <h2>{alertMessage}</h2>
         <h1>Round {round}/10</h1>
-        <h1>These are the allowed colors in the order you can select:</h1>
+        <h1>These are the allowed colors in the order you can select them:</h1>
         <div>
-          {allowedColors()}
+          {exampleColors()}
         </div>
       </div>
     </div>
