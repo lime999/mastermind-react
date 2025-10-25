@@ -11,48 +11,36 @@ export function checkSolution(
   //   return;
   // }
 
-  let numberOfCorrect = 0;
-  let numberOfInCombination = 0;
-  let numberOfFalse = 0;
+  let numberOfCorrectColorsInCorrectPosition = 0;
+  let numberOfCorrectColorsInWrongPosition = 0;
   let positionOfCompletelyCorrect = [false, false, false, false];
 
   for (let i = 0; i !== 4; i++) {
     // checking for completely correct colors
 
     if (currentGuess[i] == solution[i]) {
-      numberOfCorrect++;
+      numberOfCorrectColorsInCorrectPosition++;
       positionOfCompletelyCorrect[i] = true;
-    }
-
-    // checking for false colors
-    else if (solution.includes(currentGuess[i]) == false) {
-      numberOfFalse++;
     }
   }
 
   // checking for colors in the wrong position
+  let solutionUsed = [...positionOfCompletelyCorrect];
 
-  let hasMatched = false;
   for (let i = 0; i !== 4; i++) {
     if (!positionOfCompletelyCorrect[i]) {
       for (let a = 0; a !== 4; a++) {
-        if (
-          currentGuess[i] == solution[a] &&
-          !positionOfCompletelyCorrect[i] &&
-          !hasMatched
-        ) {
-          numberOfInCombination++;
-          hasMatched = true;
+        if (currentGuess[i] == solution[a] && !solutionUsed[a]) {
+          numberOfCorrectColorsInWrongPosition++;
+          solutionUsed[a] = true;
+          break;
         }
       }
-      hasMatched = false;
     }
   }
 
   setRound(round + 1);
   setAlertMessage(
-    `You have ${numberOfCorrect} colors in the correct position, ${numberOfInCombination} correct colors in the wrong position, and ${numberOfFalse} wrong colors.`
-  );
+    `You have ${numberOfCorrectColorsInCorrectPosition} colors in the correct position, ${numberOfCorrectColorsInWrongPosition} correct colors in the wrong position `);
+  return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];
 }
-
-
