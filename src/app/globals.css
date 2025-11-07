@@ -93,3 +93,9 @@ h1 {
   text-decoration: underline;
   font-weight: bold
 }
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}

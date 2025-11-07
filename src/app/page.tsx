@@ -26,6 +26,7 @@ export default function Board() {
     });
   };
 
+
   return (
     <div className="game">
       <div>
@@ -39,6 +40,7 @@ export default function Board() {
           />
         ))}
       </div>
+      
       <div className="side-panel">
         <button
           className="check-solution-btn"
@@ -48,7 +50,7 @@ export default function Board() {
         </button>
         <h2>{alertMessage}</h2>
         <h1>Round {round}/10</h1>
-        <h1>These are the allowed colors in the order you can select them:</h1>
+        <h1>These are the allowed colors:</h1>
         <div>{exampleColors()}</div>
       </div>
     </div>
