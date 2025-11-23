@@ -2,18 +2,18 @@ import { colors } from "./pinColors";
 
 type pinProps = {
   id: number;
+  rowId: number;
   enabled: boolean;
   color: number;
-  onColorChange: (id: number, newColor: number) => void;
+  openPopup: (rowId: number, pinId: number) => void;
 };
 
-export function Pin({ id, enabled, color, onColorChange }: pinProps) {
+export function Pin({ id, rowId, enabled, color, openPopup }: pinProps) {
   function handleClick() {
     if (!enabled) {
       return;
     }
-    const newColor = color > 7 ? 0 : color + 1;
-    onColorChange(id, newColor);
+    openPopup(id, rowId);
   }
   
   return (

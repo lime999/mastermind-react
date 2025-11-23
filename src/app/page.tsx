@@ -12,6 +12,7 @@ export default function Board() {
   const [rowColors, setRowColors] = useState(
     Array(10).fill(null).map(() => [0, 0, 0, 0])
   );
+  const [selectedPin, setSelectedPin] = useState<{ row: number; pin: number } | null>(null);
 
   const [popupVisible, setPopupVisible] = useState(false);
 
@@ -19,13 +20,14 @@ export default function Board() {
   const [round, setRound] = useState(1);
 
   const handleColorChange = (rowId: number, pinId: number, newColor: number) => {
+    setSelectedPin({ row: rowId, pin: pinId });
     setPopupVisible(true);
     setRowColors(prev => {
       const updated = prev.map((row, idx) =>
         idx === rowId
           ? row.map((color, pIdx) => pIdx === pinId ? newColor : color)
           : row
-      );
+      );  
       return updated;
     });
   };
@@ -36,11 +38,16 @@ export default function Board() {
       {popupVisible && (
         <Popup
           onColorSelect={(newColor) => {
-            // Here you would handle the color selection for the currently active pin
+            if (selectedPin) {
+              handleColorChange(selectedPin.row, selectedPin.pin, newColor);
+            }
+            setSelectedPin(null);
             setPopupVisible(false);
-          }
-          }
-          handlePopupClose={() => setPopupVisible(false)}
+          }}
+          handlePopupClose={() => {
+            setPopupVisible(false)
+            setSelectedPin(null);
+          }}
         />)}
       <div className="game">
         <div>
@@ -50,7 +57,7 @@ export default function Board() {
               rowId={rowId}
               pinColors={rowColors}
               enabled={round - 1 === rowId}
-              onColorChange={handleColorChange}
+              openPopup={(rowId, pinId) => {setPopupVisible(true); setSelectedPin({ row: rowId, pin: pinId });}}
             />
           ))}
         </div>
