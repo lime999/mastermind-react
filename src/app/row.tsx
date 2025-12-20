@@ -20,7 +20,6 @@ export function Row({ rowId, pinColors, enabled, openPopup, selectedPin }: RowPr
           color={pinColors[pinId]}
           openPopup={(pinId: number, newColor: number) => {
             openPopup(rowId, pinId);
-            
           }}
           selectedPin={selectedPin}
         />

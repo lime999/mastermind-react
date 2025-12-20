@@ -6,9 +6,13 @@ import { generateSolution } from "./generateSolution";
 import { checkSolution } from "./checkSolution";
 import { Row } from "./row";
 import { Popup } from "./popup";
+const generatedSolution = generateSolution();
+
 
 export default function Board() {
-  const [solution, setSolution] = useState(generateSolution);
+
+  const [finishedGame, setFinishedGame] = useState(false);
+  const [solution, setSolution] = useState(generatedSolution);
   const [rowColors, setRowColors] = useState(
     Array(10).fill(null).map(() => [0, 0, 0, 0])
   );
@@ -27,7 +31,7 @@ export default function Board() {
         idx === rowId
           ? row.map((color, pIdx) => pIdx === pinId ? newColor : color)
           : row
-      );  
+      );
       return updated;
     });
   };
@@ -57,7 +61,7 @@ export default function Board() {
               rowId={rowId}
               pinColors={rowColors}
               enabled={round - 1 === rowId}
-              openPopup={(rowId, pinId) => {setPopupVisible(true); setSelectedPin({ row: rowId, pin: pinId });}}
+              openPopup={(rowId, pinId) => { setPopupVisible(true); setSelectedPin({ row: rowId, pin: pinId }); }}
               selectedPin={selectedPin}
             />
           ))}
@@ -66,7 +70,7 @@ export default function Board() {
         <div className="side-panel">
           <button
             className="check-solution-btn"
-            onClick={() => checkSolution(rowColors[round - 1], solution, round, setAlertMessage, setRound)}
+            onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, setAlertMessage, setRound, setFinishedGame)}
           >
             Verify guess
           </button>

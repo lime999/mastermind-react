@@ -1,15 +1,22 @@
+import { setFlagsFromString } from "v8";
 
 export function checkSolution(
+  finishedGame: boolean,
   currentGuess: number[],
   solution: number[],
   round: number,
   setAlertMessage: Function,
-  setRound: Function
+  setRound: Function,
+  setFinishedGame: Function
 ) {
-  // if (currentGuess.includes(0)) {
-  //   setAlertMessage("Please fill all pins before checking the solution.");
-  //   return;
-  // }
+  if (round >= 10) {
+    setAlertMessage("The game is over");
+    setFinishedGame(true);
+    return
+  } else if ( finishedGame ) {
+    setAlertMessage("The game is over");
+    return;
+  }
 
   let numberOfCorrectColorsInCorrectPosition = 0;
   let numberOfCorrectColorsInWrongPosition = 0;
@@ -41,6 +48,6 @@ export function checkSolution(
 
   setRound(round + 1);
   setAlertMessage(
-    `You have ${numberOfCorrectColorsInCorrectPosition} colors in the correct position, ${numberOfCorrectColorsInWrongPosition} correct colors in the wrong position `);
+    numberOfCorrectColorsInCorrectPosition < 4 ? `You have ${numberOfCorrectColorsInCorrectPosition} colors in the correct position, ${numberOfCorrectColorsInWrongPosition} correct colors in the wrong position ` : "You cracked the code!", setFinishedGame(numberOfCorrectColorsInCorrectPosition === 4));
   return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];
 }

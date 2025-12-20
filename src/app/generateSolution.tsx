@@ -6,6 +6,6 @@ export function generateSolution(): number[] {
     let randomNumber: number = Math.floor(Math.random() * 8)
     solution.push(randomNumber);
   }
-  console.log("Solution generated:", solution);
+  console.log ("Current solution:", solution);
   return solution;
 }
