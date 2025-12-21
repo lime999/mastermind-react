@@ -1,4 +1,3 @@
-import { setFlagsFromString } from "v8";
 
 export function checkSolution(
   finishedGame: boolean,
@@ -7,14 +6,19 @@ export function checkSolution(
   round: number,
   setAlertMessage: Function,
   setRound: Function,
-  setFinishedGame: Function
+  setFinishedGame: Function,
+  activatedPins: boolean[][],
+  setResults: Function
 ) {
   if (round >= 10) {
     setAlertMessage("The game is over");
     setFinishedGame(true);
     return
-  } else if ( finishedGame ) {
+  } else if (finishedGame) {
     setAlertMessage("The game is over");
+    return;
+  } else if (activatedPins[round - 1].includes(false)) {
+    setAlertMessage("Please fill all pins before checking the solution");
     return;
   }
 
@@ -48,6 +52,14 @@ export function checkSolution(
 
   setRound(round + 1);
   setAlertMessage(
-    numberOfCorrectColorsInCorrectPosition < 4 ? `You have ${numberOfCorrectColorsInCorrectPosition} colors in the correct position, ${numberOfCorrectColorsInWrongPosition} correct colors in the wrong position ` : "You cracked the code!", setFinishedGame(numberOfCorrectColorsInCorrectPosition === 4));
-  return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];
+    numberOfCorrectColorsInCorrectPosition < 4 ? `You have ${numberOfCorrectColorsInCorrectPosition} colors in the correct position and ${numberOfCorrectColorsInWrongPosition} correct colors in the wrong position ` : "You cracked the code!", setFinishedGame(numberOfCorrectColorsInCorrectPosition === 4)
+  );
+  setResults((prev: number[][]) => {
+    const updated = prev.map((roundResults, idx) =>
+      idx === round - 1
+        ? [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition]
+        : roundResults
+    );
+    return updated;
+  });
 }

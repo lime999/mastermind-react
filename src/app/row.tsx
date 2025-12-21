@@ -6,9 +6,10 @@ type RowProps = {
   enabled: boolean;
   openPopup: (rowId: number, pinId: number) => void;
   selectedPin: { row: number; pin: number } | null;
+  activatedPins: boolean[][];
 };
 
-export function Row({ rowId, pinColors, enabled, openPopup, selectedPin }: RowProps) {
+export function Row({ rowId, pinColors, enabled, openPopup, selectedPin, activatedPins }: RowProps) {
   return (
     <div className="row" style={{ background: enabled ? "#61d800ff" : "#ffffffff" }}>
       {[0, 1, 2, 3].map((pinId) => (
@@ -22,6 +23,7 @@ export function Row({ rowId, pinColors, enabled, openPopup, selectedPin }: RowPr
             openPopup(rowId, pinId);
           }}
           selectedPin={selectedPin}
+          activatedPins={activatedPins}
         />
       ))}
     </div>
