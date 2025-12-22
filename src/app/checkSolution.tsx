@@ -60,6 +60,8 @@ export function checkSolution(
         ? [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition]
         : roundResults
     );
+    console.log(updated);
     return updated;
   });
+  return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];
 }

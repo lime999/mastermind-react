@@ -6,52 +6,76 @@ describe("comparing function gives results feedback with ", () => {
   test("completely correct guess", () => {
     let testSolution = [1, 2, 3, 4];
     let testGuess = [1, 2, 3, 4];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([4, 0]);
   });
   test("completely incorrect guess", () => {
     let testSolution = [0, 1, 2, 3];
     let testGuess = [4, 5, 6, 7];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([0, 0]);
   });
   test("partially correct guess", () => {
     let testSolution = [1, 2, 3, 4];
     let testGuess = [1, 0, 3, 5];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([2, 0]);
   });
   test("all correct colors but all in wrong position", () => {
     let testSolution = [1, 2, 3, 4];
     let testGuess = [4, 3, 2, 1];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([0, 4]);
   });
@@ -59,52 +83,76 @@ describe("comparing function gives results feedback with ", () => {
   test("partially correct guess", () => {
     let testSolution = [1, 2, 3, 4];
     let testGuess = [1, 3, 4, 2];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([1, 3]);
   });
   test("partially correct guess with only duplicate colors in the guess", () => {
     let testSolution = [1, 1, 1, 1];
     let testGuess = [1, 3, 4, 2];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([1, 0]);
   });
   test("partially correct guess with only duplicate colors in the guess", () => {
     let testSolution = [3, 3, 3, 3];
     let testGuess = [3, 3, 4, 2];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([2, 0]);
   });
   test("partially correct guess with only duplicate colors in the guess", () => {
     let testSolution = [4, 4, 4, 4];
     let testGuess = [4, 4, 4, 2];
+    let activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
     let result = checkSolution(
+      false,
       testGuess,
       testSolution,
       1,
       () => { },
+      () => { },
+      () => { },
+      activatedPins,
       () => { }
+
     );
     expect(result).toEqual([3, 0]);
   });

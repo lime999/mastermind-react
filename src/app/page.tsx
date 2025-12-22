@@ -81,7 +81,18 @@ export default function Board() {
             />
           ))}
         </div>
-
+        <div className="results-panel">
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+          <div className="results"><span>1 </span>|<span> 2</span></div>
+        </div>
         <div className="side-panel">
           <button
             className="check-solution-btn"
