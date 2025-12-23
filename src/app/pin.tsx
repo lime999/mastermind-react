@@ -20,7 +20,11 @@ export function Pin({ id, rowId, enabled, color, openPopup, selectedPin, activat
 
   return (
     <button
-      style={{ background: activatedPins[rowId][id] ? colors[color] : '#000', border: selectedPin && selectedPin.row === rowId && selectedPin.pin === id ? '4px solid #000000' : '2px solid #222222cc' }}
+      style={{
+        background: activatedPins[rowId][id] ? colors[color] : '#000',
+        border: selectedPin && selectedPin.row === rowId && selectedPin.pin === id ? '4px solid #833434ff' : '2px solid #222222cc',
+        cursor: enabled ? 'pointer' : 'not-allowed'
+      }}
       className="pin"
       onClick={handleClick}
     ></button>

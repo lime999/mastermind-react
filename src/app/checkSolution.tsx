@@ -10,6 +10,7 @@ export function checkSolution(
   activatedPins: boolean[][],
   setResults: Function
 ) {
+  setAlertMessage("");
   if (round >= 10) {
     setAlertMessage("The game is over");
     setFinishedGame(true);
@@ -51,16 +52,13 @@ export function checkSolution(
   }
 
   setRound(round + 1);
-  setAlertMessage(
-    numberOfCorrectColorsInCorrectPosition < 4 ? `You have ${numberOfCorrectColorsInCorrectPosition} colors in the correct position and ${numberOfCorrectColorsInWrongPosition} correct colors in the wrong position ` : "You cracked the code!", setFinishedGame(numberOfCorrectColorsInCorrectPosition === 4)
-  );
+
   setResults((prev: number[][]) => {
     const updated = prev.map((roundResults, idx) =>
       idx === round - 1
         ? [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition]
         : roundResults
     );
-    console.log(updated);
     return updated;
   });
   return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];

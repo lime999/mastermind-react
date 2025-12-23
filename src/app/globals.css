@@ -112,3 +112,32 @@ body {
   grid-auto-rows: 25.35px;
   margin-left: 10px;
 }
+
+.popup-pins {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  border: 4px solid #d1d5db;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.popup-pins:hover {
+  border-color: #6b7280;
+  transform: scale(1.1);
+}
+
+.popup-cancel-btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #e5e7eb;
+  border-radius: 0.5rem;
+  color: #374151;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.popup-cancel-btn:hover {
+  background-color: #d1d5db;
+}

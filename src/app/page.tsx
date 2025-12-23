@@ -5,6 +5,7 @@ import { generateSolution } from "./generateSolution";
 import { checkSolution } from "./checkSolution";
 import { Row } from "./row";
 import { Popup } from "./popup";
+import { resultNumbers } from "./results";
 const generatedSolution = generateSolution();
 
 
@@ -81,18 +82,11 @@ export default function Board() {
             />
           ))}
         </div>
+
         <div className="results-panel">
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
-          <div className="results"><span>1 </span>|<span> 2</span></div>
+          {resultNumbers(results)}
         </div>
+
         <div className="side-panel">
           <button
             className="check-solution-btn"
