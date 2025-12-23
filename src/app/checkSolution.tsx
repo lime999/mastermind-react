@@ -61,5 +61,10 @@ export function checkSolution(
     );
     return updated;
   });
+  if (numberOfCorrectColorsInCorrectPosition === 4) {
+    setAlertMessage("Congratulations! You've guessed the solution!");
+    alert("Congratulations! You've guessed the solution!");
+    setFinishedGame(true);
+  }
   return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];
 }

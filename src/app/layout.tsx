@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "tic tac toe",
-  description: "tic tac toe",
+  title: "mastermind",
+  description: "mastermind game built with next.js and typescript",
 };
 
 export default function RootLayout({
