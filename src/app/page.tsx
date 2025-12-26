@@ -5,7 +5,8 @@ import { generateSolution } from "./generateSolution";
 import { checkSolution } from "./checkSolution";
 import { Row } from "./row";
 import { Popup } from "./popup";
-import { resultNumbers } from "./results";
+import { resultNumbers } from "./resultNumbers";
+import {ExplanationPopup } from "./explanantionPopup";
 const generatedSolution = generateSolution();
 
 
@@ -25,6 +26,7 @@ export default function Board() {
 
   const [selectedPin, setSelectedPin] = useState<{ row: number; pin: number } | null>(null);
   const [popupVisible, setPopupVisible] = useState(false);
+  const [explanationPopupVisible, setExplanationPopupVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [round, setRound] = useState(1);
   const [finishedGame, setFinishedGame] = useState(false);
@@ -35,7 +37,7 @@ export default function Board() {
     setPopupVisible(true);
     setRowColors(prev => {
       const updated = prev.map((row, idx) =>
-        idx === rowId
+        idx === rowId                                                                     
           ? row.map((color, pIdx) => pIdx === pinId ? newColor : color)
           : row
       );
@@ -68,6 +70,21 @@ export default function Board() {
             setSelectedPin(null);
           }}
         />)}
+      {explanationPopupVisible && (
+        <ExplanationPopup
+          handlePopupClose={() => {
+            setExplanationPopupVisible(false);
+          }}
+
+        />)}
+
+
+
+
+
+
+
+
       <div className="game">
         <div>
           {rowColors.map((rowColors, rowId) => (
@@ -84,7 +101,8 @@ export default function Board() {
         </div>
 
         <div className="results-panel">
-          {resultNumbers(results)}
+          {resultNumbers(results, setExplanationPopupVisible)}
+
         </div>
 
         <div className="side-panel">

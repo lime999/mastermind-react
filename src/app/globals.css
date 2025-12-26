@@ -103,13 +103,14 @@ body {
 
 .results {
   display: inline-block;
-  height: 25.35px;
+  height: 24px;
   font-weight: bold;
+  cursor: help
 }
 
 .results-panel {
   display: grid;
-  grid-auto-rows: 25.35px;
+  grid-auto-rows: 24px;
   margin-left: 10px;
 }
 
@@ -141,3 +142,4 @@ body {
 .popup-cancel-btn:hover {
   background-color: #d1d5db;
 }
+

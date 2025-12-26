@@ -2,6 +2,7 @@
 
 export function resultNumbers(
     results: number[][],
+    setExplanationPopupVisible: (value: boolean) => void
 ) {
 
 
@@ -10,7 +11,9 @@ export function resultNumbers(
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((Id) => (
 
             
-                <div key={Id} className="results">
+                <div key={Id} className="results"
+                onClick={() => setExplanationPopupVisible(true)}
+                >
                     <span
                         style={{
                             color: '#33ff00ff'

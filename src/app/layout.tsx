@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "mastermind",
-  description: "mastermind game built with next.js and typescript",
+  description: "mastermind game built in react with next.js and typescript",
 };
 
 export default function RootLayout({
