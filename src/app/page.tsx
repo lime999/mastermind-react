@@ -86,7 +86,8 @@ export default function Board() {
 
 
       <div className="game">
-        <div>
+        
+        <div className="board">
           {rowColors.map((rowColors, rowId) => (
             <Row
               key={rowId}
@@ -112,7 +113,7 @@ export default function Board() {
           >
             Verify guess
           </button>
-          <h2>{alertMessage}</h2>
+          <div >{alertMessage}</div>
         </div>
       </div>
     </div>

@@ -1,5 +1,3 @@
-
-
 :root {
   --background: #000000;
   --foreground: #ffffff;
@@ -48,6 +46,9 @@ body {
 .game {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+  justify-content: center; /* center the whole group horizontally */
+  gap: 1.25rem; /* space between board, results-panel and side-panel */
 }
 
 .check-solution-btn {
@@ -88,6 +89,8 @@ body {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center; /* center the whole group horizontally */
+  gap: 1rem; /* space between board, results-panel and side-panel */
 }
 
 
@@ -142,4 +145,5 @@ body {
 .popup-cancel-btn:hover {
   background-color: #d1d5db;
 }
+
 
