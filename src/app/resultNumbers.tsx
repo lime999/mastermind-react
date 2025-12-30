@@ -2,7 +2,8 @@
 
 export function resultNumbers(
     results: number[][],
-    setExplanationPopupVisible: (value: boolean) => void
+    setMessagePopupVisible: (value: boolean) => void,
+    setPopupMessage: (message: string) => void
 ) {
 
 
@@ -12,7 +13,7 @@ export function resultNumbers(
 
             
                 <div key={Id} className="results"
-                onClick={() => setExplanationPopupVisible(true)}
+                onClick={() => {setMessagePopupVisible(true), setPopupMessage("resultsexplanantion")}}
                 >
                     <span
                         style={{
@@ -24,7 +25,9 @@ export function resultNumbers(
                         style={{
                             color: '#ffae00ff'
                         }}
-                    > {results[Id][1]}</span></div>
+                    > {results[Id][1]}</span>
+                    
+                    </div>
 
 
         )

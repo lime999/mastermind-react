@@ -6,7 +6,7 @@ import { checkSolution } from "./checkSolution";
 import { Row } from "./row";
 import { Popup } from "./popup";
 import { resultNumbers } from "./resultNumbers";
-import {ExplanationPopup } from "./explanantionPopup";
+import {MessagePopup } from "./messagePopup";
 const generatedSolution = generateSolution();
 
 
@@ -26,8 +26,8 @@ export default function Board() {
 
   const [selectedPin, setSelectedPin] = useState<{ row: number; pin: number } | null>(null);
   const [popupVisible, setPopupVisible] = useState(false);
-  const [explanationPopupVisible, setExplanationPopupVisible] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [messagePopupVisible, setMessagePopupVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
   const [round, setRound] = useState(1);
   const [finishedGame, setFinishedGame] = useState(false);
   const [solution, setSolution] = useState(generatedSolution);
@@ -70,12 +70,12 @@ export default function Board() {
             setSelectedPin(null);
           }}
         />)}
-      {explanationPopupVisible && (
-        <ExplanationPopup
+      {messagePopupVisible && (
+        <MessagePopup
           handlePopupClose={() => {
-            setExplanationPopupVisible(false);
+            setMessagePopupVisible(false);
           }}
-
+          message= {popupMessage}
         />)}
 
 
@@ -87,6 +87,11 @@ export default function Board() {
 
       <div className="game">
         
+        <div className="results-panel">
+          {resultNumbers(results, setMessagePopupVisible, setPopupMessage)}
+
+        </div>
+
         <div className="board">
           {rowColors.map((rowColors, rowId) => (
             <Row
@@ -101,19 +106,16 @@ export default function Board() {
           ))}
         </div>
 
-        <div className="results-panel">
-          {resultNumbers(results, setExplanationPopupVisible)}
-
-        </div>
+        
 
         <div className="side-panel">
           <button
             className="check-solution-btn"
-            onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, setAlertMessage, setRound, setFinishedGame, activatedPins, setResults)}
+            onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, (a: string) => {setMessagePopupVisible(true), setPopupMessage(a)}, setRound, setFinishedGame, activatedPins, setResults)}
           >
             Verify guess
           </button>
-          <div >{alertMessage}</div>
+
         </div>
       </div>
     </div>

@@ -108,13 +108,14 @@ body {
   display: inline-block;
   height: 24px;
   font-weight: bold;
-  cursor: help
+  cursor: help;
+
 }
 
 .results-panel {
   display: grid;
   grid-auto-rows: 24px;
-  margin-left: 10px;
+  margin-right: -10px;
 }
 
 .popup-pins {
