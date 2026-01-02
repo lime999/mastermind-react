@@ -4,13 +4,13 @@ export function checkSolution(
   currentGuess: number[],
   solution: number[],
   round: number,
-  setAlertMessage: Function,
-  setRound: Function,
-  setFinishedGame: Function,
+  setAlertMessage: (message: string) => void,
+  setRound: (round: number) => void,
+  setFinishedGame: (finishedGame: boolean) => void,
   activatedPins: boolean[][],
   setResults: Function
 ) {
-  setAlertMessage("");
+
   if (round >= 10) {
     setAlertMessage("The game is over");
     setFinishedGame(true);
@@ -25,7 +25,7 @@ export function checkSolution(
 
   let numberOfCorrectColorsInCorrectPosition = 0;
   let numberOfCorrectColorsInWrongPosition = 0;
-  let positionOfCompletelyCorrect = [false, false, false, false];
+  const positionOfCompletelyCorrect = [false, false, false, false];
 
   for (let i = 0; i !== 4; i++) {
     // checking for completely correct colors
@@ -37,7 +37,7 @@ export function checkSolution(
   }
 
   // checking for colors in the wrong position
-  let solutionUsed = [...positionOfCompletelyCorrect];
+  const solutionUsed = [...positionOfCompletelyCorrect];
 
   for (let i = 0; i !== 4; i++) {
     if (!positionOfCompletelyCorrect[i]) {
@@ -59,7 +59,7 @@ export function checkSolution(
         ? [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition]
         : roundResults
     );
-    return updated;
+    updated;
   });
   if (numberOfCorrectColorsInCorrectPosition === 4) {
     setAlertMessage("Congratulations! You've guessed the solution!");

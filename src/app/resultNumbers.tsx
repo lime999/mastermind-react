@@ -17,13 +17,13 @@ export function resultNumbers(
                 >
                     <span
                         style={{
-                            color: '#33ff00ff'
+                            color: '#1e9400ff'
                         }}
                     >{results[Id][0]} </span>
                     |
                     <span
                         style={{
-                            color: '#ffae00ff'
+                            color: '#c98900ff'
                         }}
                     > {results[Id][1]}</span>
                     

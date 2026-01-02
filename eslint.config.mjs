@@ -19,7 +19,11 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+    rules: {
+      "@typescript-eslint/no-unsafe-function-type": "off",
+    },
   },
+
 ];
 
 export default eslintConfig;

@@ -6,8 +6,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,20 +19,29 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vh 2vw;
+  gap: 2vh;
+  background-color: #f0f0f0;
 }
 
 .pin {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: #000;
+  width: 4vh;
+  height: 4vh;
+  border: 0.1vw solid #333;
   border-radius: 50%;
-  border: 2px solid #222;
-  margin: 2px;
-  vertical-align: middle;
+  background-color: #fff;
+}
+
+.board {
+  padding: 1vh 1vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  background-color: #e8f5e9;
 }
 
 .board-row:after {
@@ -45,10 +52,9 @@ body {
 
 .game {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center; /* center the whole group horizontally */
-  gap: 1.25rem; /* space between board, results-panel and side-panel */
+  gap: 2vw;
+  padding: 2vh 2vw;
+  overflow: auto;
 }
 
 .check-solution-btn {
@@ -65,7 +71,7 @@ body {
 
 .check-solution-btn:hover {
   background-color: #388e3c;
-  outline: none;
+  outline: black 1px solid;
 }
 
 .check-solution-btn:focus {
@@ -77,22 +83,10 @@ body {
 }
 
 .side-panel {
-  margin-left: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: sticky;
-  top: 20px;
-}
+  padding: 2vh 2vw;
+  text-align: center;
 
-.game {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center; /* center the whole group horizontally */
-  gap: 1rem; /* space between board, results-panel and side-panel */
 }
-
 
 .popup {
   position: relative;
@@ -101,21 +95,33 @@ body {
 }
 
 .row {
-  border-radius: 10px;
+  padding: 0.5vh 0.5vw;
+  height: 5vh;
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+  border-radius: 25px;
 }
 
 .results {
-  display: inline-block;
-  height: 24px;
-  font-weight: bold;
-  cursor: help;
+  padding: 0.5vh 0.5vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5.5vh;
+}
 
+.results:hover {
+  cursor: help
 }
 
 .results-panel {
-  display: grid;
-  grid-auto-rows: 24px;
-  margin-right: -10px;
+  padding: 1vh 1vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  font-weight: bold;
 }
 
 .popup-pins {
@@ -146,5 +152,3 @@ body {
 .popup-cancel-btn:hover {
   background-color: #d1d5db;
 }
-
-

@@ -1,8 +1,11 @@
 {
   "name": "mastermind",
   "version": "0.1.0",
+  "homepage": "https://lime999.github.io/mastermind-react",
   "private": true,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
@@ -23,6 +26,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "gh-pages": "^6.3.0",
     "jest": "^30.2.0",
     "tailwindcss": "^4",
     "ts-jest": "^29.4.5",

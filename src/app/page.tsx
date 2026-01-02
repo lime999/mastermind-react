@@ -77,24 +77,15 @@ export default function Board() {
         <MessagePopup
           handlePopupClose={() => {
             setMessagePopupVisible(false);
+            setPopupMessage("");
           }}
           message={popupMessage}
         />)}
 
-
-
-
-
-
-
-
       <div className="game">
-
         <div className="results-panel">
           {resultNumbers(results, setMessagePopupVisible, setPopupMessage)}
-
         </div>
-
         <div className="board">
           {rowColors.map((rowColors, rowId) => (
             <Row
@@ -108,18 +99,14 @@ export default function Board() {
             />
           ))}
         </div>
-
-
-
-        <div className="side-panel">
-          <button
-            className="check-solution-btn"
-            onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, (a: string) => { setMessagePopupVisible(true), setPopupMessage(a) }, setRound, setFinishedGame, activatedPins, setResults)}
-          >
-            Verify guess
-          </button>
-
-        </div>
+      </div>
+      <div className="side-panel">
+        <button
+          className="check-solution-btn"
+          onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, (a: string) => { setMessagePopupVisible(true), setPopupMessage(a) }, setRound, setFinishedGame, activatedPins, setResults)}
+        >
+          Verify guess
+        </button>
       </div>
     </div>
   );
