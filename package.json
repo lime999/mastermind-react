@@ -2,10 +2,9 @@
   "name": "mastermind",
   "version": "0.1.0",
   "homepage": "https://lime999.github.io/mastermind-react",
-  "private": true,
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build && touch ./out/.nojekyll && gh-pages -d out -t true",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
@@ -15,7 +14,8 @@
   "dependencies": {
     "next": "15.5.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "touch-cli": "^0.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
