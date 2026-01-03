@@ -7,7 +7,7 @@ import { Row } from "./row";
 import { Popup } from "./popup";
 import { resultNumbers } from "./resultNumbers";
 import { MessagePopup } from "./messagePopup";
-
+const generatedSolution = generateSolution(false);
 
 
 export default function Board() {
@@ -30,7 +30,6 @@ export default function Board() {
   const [popupMessage, setPopupMessage] = useState("");
   const [round, setRound] = useState(1);
   const [finishedGame, setFinishedGame] = useState(false);
-  const generatedSolution = generateSolution(doubleColorsEnabled);
   const [solution, setSolution] = useState(generatedSolution);
 
 

@@ -4,7 +4,7 @@
   "homepage": "https://lime999.github.io/mastermind-react",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "npm run build && touch ./out/.nojekyll && gh-pages -d out -t true",
+    "deploy": "npm run build",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
