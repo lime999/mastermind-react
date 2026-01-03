@@ -7,7 +7,7 @@ export function checkSolution(
   setRound: (round: number) => void,
   setFinishedGame: (finishedGame: boolean) => void,
   activatedPins: boolean[][],
-  setResults: (value: any) => void
+  setResults: (value: number[][] | ((prevState: number[][]) => number[][])) => void
 ) {
 
   if (round >= 10) {
