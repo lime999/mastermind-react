@@ -7,6 +7,8 @@ import { Row } from "./row";
 import { Popup } from "./popup";
 import { resultNumbers } from "./resultNumbers";
 import { MessagePopup } from "./messagePopup";
+import { resetGame } from "./resetGame";
+
 const generatedSolution = generateSolution(false);
 
 
@@ -35,6 +37,9 @@ export default function Board() {
 
 
   const handleColorChange = (rowId: number, pinId: number, newColor: number) => {
+    if (finishedGame) {
+      return;
+    }
     setSelectedPin({ row: rowId, pin: pinId });
     setPopupVisible(true);
     setRowColors(prev => {
@@ -53,6 +58,7 @@ export default function Board() {
       );
       return updated;
     });
+    setSelectedPin(null);
   };
 
 
@@ -105,6 +111,13 @@ export default function Board() {
           onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, (a: string) => { setMessagePopupVisible(true), setPopupMessage(a) }, setRound, setFinishedGame, activatedPins, setResults)}
         >
           Verify guess
+        </button>
+        <br></br>
+        <button
+          className="reset-btn"
+          onClick={() => resetGame(setResults, setRowColors, setActivatedPins, setRound, setFinishedGame, generateSolution, setSolution)}
+        >
+          Reset Game
         </button>
       </div>
     </div>

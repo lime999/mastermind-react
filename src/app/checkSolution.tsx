@@ -7,12 +7,12 @@ export function checkSolution(
   setRound: (round: number) => void,
   setFinishedGame: (finishedGame: boolean) => void,
   activatedPins: boolean[][],
-  setResults: (value: number[][] | ((prevState: number[][]) => number[][])) => void
+  setResults: (value: number[][] | ((prevState: number[][]) => number[][])) => void,
 ) {
 
-  if (round >= 10) {
-    setAlertMessage("The game is over");
-    setFinishedGame(true);
+  if (round >= 11) {
+    setAlertMessage("You lost :(")
+    setFinishedGame(true)
     return
   } else if (finishedGame) {
     setAlertMessage("The game is over");
@@ -62,6 +62,7 @@ export function checkSolution(
   if (numberOfCorrectColorsInCorrectPosition === 4) {
     setAlertMessage("Congratulations! You've guessed the solution!");
     setFinishedGame(true);
+    setRound(11);
   }
   return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];
 }

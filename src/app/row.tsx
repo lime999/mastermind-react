@@ -11,7 +11,7 @@ type RowProps = {
 
 export function Row({ rowId, pinColors, enabled, openPopup, selectedPin, activatedPins }: RowProps) {
   return (
-    <div className="row" style={{ background: enabled ? "#61d800ff" : "#ffffffff" , cursor: enabled ? "default" : "not-allowed" }}>
+    <div className="row" style={{ background: enabled ? "#61d800ff" : "#ffffffff", cursor: enabled ? "default" : "not-allowed" }}>
       {[0, 1, 2, 3].map((pinId) => (
         <Pin
           key={pinId}
