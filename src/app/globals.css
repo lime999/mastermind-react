@@ -60,7 +60,7 @@ body {
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  margin: 1em 0;
+  margin: 1em ;
 }
 
 .check-solution-btn:hover {
@@ -157,7 +157,7 @@ body {
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  margin: 1em 0;
+  margin: 1em ;
 }
 
 
@@ -166,10 +166,41 @@ body {
   outline: black 1px solid;
 }
 
-.check-solution-btn:focus {
+.reset-btn:focus {
   outline: none;
 }
 
 .reset-btn:active {
   background-color: #4caf50;
+}
+
+.show-solution-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75em 2em;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 1em ;
+}
+
+.show-solution-btn:hover {
+  background-color: #0056b3;
+  outline: black 1px solid;
+}
+
+.show-solution-btn:focus {
+  outline: none;
+}
+
+.show-solution-btn:active {
+  background-color: #a7760d;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

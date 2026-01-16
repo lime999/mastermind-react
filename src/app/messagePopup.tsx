@@ -1,10 +1,11 @@
 type popupProps = {
     handlePopupClose: () => void;
     message: string;
+    solution: number[];
+    colors: string[];
 };
 
-export function MessagePopup({ handlePopupClose, message }: popupProps) {
-
+export function MessagePopup({ handlePopupClose, message, solution, colors }: popupProps) {
 
     let messagex;
 
@@ -26,6 +27,40 @@ export function MessagePopup({ handlePopupClose, message }: popupProps) {
                 The <span style={{ color: '#ffae00ff' }}>second number</span> indicates how many colors are <span style={{ color: '#33ff00ff' }}>correct</span> but in the <span style={{ color: '#ff0000ff' }}>wrong</span> position.
 
             </h2>
+    } else if (message === "showsolution") {
+        let solutionPins = [];
+        for (let i = 0; i < 4; i++) {
+            solutionPins.push(<button
+                style={{
+                    background: colors[solution[i]],
+                    border: '2px solid #222222cc',
+                }}
+                className="pin"
+                key={i}
+            ></button>)
+
+        }
+        messagex =
+            <div>
+
+                <h2
+                    style={{
+                        fontSize: '1.5rem',
+                        fontWeight: 'bold',
+                        marginBottom: '1rem',
+                        color: '#333333',
+                        textAlign: 'center'
+                    }}
+                >
+                    Solution:
+                </h2>
+                <div
+                    className="row"
+                >
+                    {solutionPins}
+                </div>
+            </div>
+
     } else {
         messagex = <h2
             style={{

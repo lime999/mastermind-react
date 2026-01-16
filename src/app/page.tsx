@@ -8,6 +8,8 @@ import { Popup } from "./popup";
 import { resultNumbers } from "./resultNumbers";
 import { MessagePopup } from "./messagePopup";
 import { resetGame } from "./resetGame";
+import { finished } from "stream";
+import { colors } from "./pinColors";
 
 const generatedSolution = generateSolution(false);
 
@@ -63,7 +65,9 @@ export default function Board() {
 
 
   return (
-    <div>
+    <div
+      className="wrapper"
+    >
       {popupVisible && (
         <Popup
           onColorSelect={(newColor) => {
@@ -85,6 +89,8 @@ export default function Board() {
             setPopupMessage("");
           }}
           message={popupMessage}
+          solution={solution}
+          colors={colors}
         />)}
 
       <div className="game">
@@ -112,13 +118,23 @@ export default function Board() {
         >
           Verify guess
         </button>
-        <br></br>
+
         <button
           className="reset-btn"
           onClick={() => resetGame(setResults, setRowColors, setActivatedPins, setRound, setFinishedGame, generateSolution, setSolution)}
         >
           Reset Game
         </button>
+        {finishedGame &&
+          (<button
+            className="show-solution-btn"
+            onClick={() => {
+              setMessagePopupVisible(true);
+              setPopupMessage("showsolution");
+            }}
+          >
+            show Solution
+          </button>)}
       </div>
     </div>
   );

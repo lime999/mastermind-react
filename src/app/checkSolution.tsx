@@ -9,8 +9,7 @@ export function checkSolution(
   activatedPins: boolean[][],
   setResults: (value: number[][] | ((prevState: number[][]) => number[][])) => void,
 ) {
-
-  if (round >= 11) {
+  if (round === 11) {
     setAlertMessage("You lost :(")
     setFinishedGame(true)
     return
@@ -50,7 +49,6 @@ export function checkSolution(
   }
 
   setRound(round + 1);
-
   setResults((prev: number[][]) => {
     const updated = prev.map((roundResults, idx) =>
       idx === round - 1
@@ -62,7 +60,11 @@ export function checkSolution(
   if (numberOfCorrectColorsInCorrectPosition === 4) {
     setAlertMessage("Congratulations! You've guessed the solution!");
     setFinishedGame(true);
-    setRound(11);
+    setRound(12);
+  }
+  if (round === 10 && numberOfCorrectColorsInCorrectPosition < 4) {
+    setAlertMessage("You lost :(")
+    setFinishedGame(true)
   }
   return [numberOfCorrectColorsInCorrectPosition, numberOfCorrectColorsInWrongPosition];
 }
