@@ -28,7 +28,7 @@ export function MessagePopup({ handlePopupClose, message, solution, colors }: po
 
             </h2>
     } else if (message === "showsolution") {
-        let solutionPins = [];
+        const solutionPins = [];
         for (let i = 0; i < 4; i++) {
             solutionPins.push(<button
                 style={{
