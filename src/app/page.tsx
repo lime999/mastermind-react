@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { GenerateSolution } from "./GenerateSolution";
-import { CheckSolution } from "./CheckSolution";
-import { Row } from "./Row";
-import { Popup } from "./Popup";
-import { getResultNumbers } from "./ResultNumbers";
-import { MessagePopup } from "./MessagePopup";
-import { ResetGame } from "./ResetGame";
-import { COLORS } from "./PinColors";
+import { generateSolution } from "./generateSolution";
+import { checkSolution } from "./checkSolution";
+import { Row } from "./row";
+import { Popup } from "./popup";
+import { resultNumbers } from "./resultNumbers";
+import { MessagePopup } from "./messagePopup";
+import { resetGame } from "./resetGame";
+import { finished } from "stream";
+import { colors } from "./pinColors";
 
-const generatedSolution = GenerateSolution(false);
+const generatedSolution = generateSolution(false);
 
 
 export default function Board() {
@@ -89,12 +90,12 @@ export default function Board() {
           }}
           message={popupMessage}
           solution={solution}
-          colors={COLORS}
+          colors={colors}
         />)}
 
       <div className="game">
         <div className="results-panel">
-          {getResultNumbers(results, setMessagePopupVisible, setPopupMessage)}
+          {resultNumbers(results, setMessagePopupVisible, setPopupMessage)}
         </div>
         <div className="board">
           {rowColors.map((rowColors, rowId) => (
@@ -113,14 +114,14 @@ export default function Board() {
       <div className="side-panel">
         <button
           className="check-solution-btn"
-          onClick={() => CheckSolution(finishedGame, rowColors[round - 1], solution, round, (a: string) => { setMessagePopupVisible(true), setPopupMessage(a) }, setRound, setFinishedGame, activatedPins, setResults)}
+          onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, (a: string) => { setMessagePopupVisible(true), setPopupMessage(a) }, setRound, setFinishedGame, activatedPins, setResults)}
         >
           Verify guess
         </button>
 
         <button
           className="reset-btn"
-          onClick={() => ResetGame(setResults, setRowColors, setActivatedPins, setRound, setFinishedGame, GenerateSolution, setSolution)}
+          onClick={() => resetGame(setResults, setRowColors, setActivatedPins, setRound, setFinishedGame, generateSolution, setSolution)}
         >
           Reset Game
         </button>
