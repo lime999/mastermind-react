@@ -1,10 +1,10 @@
-export function resetGame(
+export function ResetGame(
     setResults: (value: number[][]) => void,
     setRowColors: (value: number[][]) => void,
     setActivatedPins: (value: boolean[][]) => void,
     setRound: (value: number) => void,
     setFinishedGame: (value: boolean) => void,
-    generateSolution: (value: boolean) => number[],
+    GenerateSolution: (value: boolean) => number[],
     setSolution: (value: number[]) => void,
 ) {
     setResults(
@@ -18,5 +18,5 @@ export function resetGame(
     );
     setRound(1);
     setFinishedGame(false);
-    setSolution(generateSolution(false));
+    setSolution(GenerateSolution(false));
 }

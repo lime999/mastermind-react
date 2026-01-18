@@ -1,4 +1,4 @@
-import { checkSolution } from "./checkSolution";
+import { CheckSolution } from "./CheckSolution";
 
 describe("comparing function gives results feedback with ", () => {
   // first array is the guess, second one the solution
@@ -8,7 +8,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [1, 2, 3, 4];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,
@@ -27,7 +27,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [4, 5, 6, 7];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,
@@ -46,7 +46,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [1, 0, 3, 5];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,
@@ -65,7 +65,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [4, 3, 2, 1];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,
@@ -85,7 +85,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [1, 3, 4, 2];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,
@@ -104,7 +104,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [1, 3, 4, 2];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,
@@ -123,7 +123,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [3, 3, 4, 2];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,
@@ -142,7 +142,7 @@ describe("comparing function gives results feedback with ", () => {
     const testGuess = [4, 4, 4, 2];
     const activatedPins = Array(10).fill(null).map(() => [true, true, true, true]);
 
-    const result = checkSolution(
+    const result = CheckSolution(
       false,
       testGuess,
       testSolution,

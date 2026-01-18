@@ -1,4 +1,4 @@
-export function generateSolution(duplicatesAllowed: boolean): number[] {
+export function GenerateSolution(duplicatesAllowed: boolean): number[] {
 
   const solution: number[] = [];
   if (duplicatesAllowed) {

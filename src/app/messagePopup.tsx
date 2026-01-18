@@ -1,17 +1,16 @@
-type popupProps = {
+type MessagePopupProps = {
     handlePopupClose: () => void;
     message: string;
     solution: number[];
     colors: string[];
 };
 
-export function MessagePopup({ handlePopupClose, message, solution, colors }: popupProps) {
-
-    let messagex;
+export function MessagePopup({ handlePopupClose, message, solution, colors }: MessagePopupProps) {
+    let messageContent;
 
     if (message === "resultsexplanantion") {
 
-        messagex =
+        messageContent =
 
             <h2
                 style={{
@@ -40,7 +39,7 @@ export function MessagePopup({ handlePopupClose, message, solution, colors }: po
             ></button>)
 
         }
-        messagex =
+        messageContent =
             <div>
 
                 <h2
@@ -62,7 +61,7 @@ export function MessagePopup({ handlePopupClose, message, solution, colors }: po
             </div>
 
     } else {
-        messagex = <h2
+        messageContent = <h2
             style={{
                 fontSize: '1.5rem',
                 fontWeight: 'bold',
@@ -103,7 +102,7 @@ export function MessagePopup({ handlePopupClose, message, solution, colors }: po
                 }}
                 onClick={(e) => e.stopPropagation()}
             >
-                {messagex}
+                {messageContent}
 
                 <button
                     onClick={handlePopupClose}

@@ -1,6 +1,6 @@
-import { generateSolution } from "./generateSolution";
+import { GenerateSolution } from "./GenerateSolution";
 
-describe("generateSolution", () => {
+describe("GenerateSolution", () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
@@ -13,14 +13,14 @@ describe("generateSolution", () => {
       .mockReturnValueOnce(0.5)
       .mockReturnValueOnce(0.999); // Math.floor(0.999 * 8) = 7
 
-    const result = generateSolution(true);
+    const result = GenerateSolution(true);
     expect(result).toEqual([0, 4, 4, 7]);
   });
 
   test("when duplicatesAllowed is false, returns 4 unique numbers in range 0..7 (shuffle branch)", () => {
     jest.spyOn(global.Math, "random").mockReturnValue(0.000001);
 
-    const result = generateSolution(false);
+    const result = GenerateSolution(false);
 
     expect(result).toHaveLength(4);
     expect(new Set(result).size).toBe(4);

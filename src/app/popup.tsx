@@ -1,13 +1,11 @@
-import { colors } from "./pinColors";
+import { COLORS } from "./PinColors";
 
-
-type popupProps = {
+type PopupProps = {
     onColorSelect: (newColor: number) => void;
     handlePopupClose: () => void;
 };
 
-export function Popup({ onColorSelect, handlePopupClose }: popupProps) {
-
+export function Popup({ onColorSelect, handlePopupClose }: PopupProps) {
     return (
         <div
             style={{
@@ -49,10 +47,10 @@ export function Popup({ onColorSelect, handlePopupClose }: popupProps) {
                     }}
 
                 >
-                    {colors.map((color) => (
+                    {COLORS.map((color) => (
                         <button
                             key={color}
-                            onClick={() => onColorSelect(colors.indexOf(color))}
+                            onClick={() => onColorSelect(COLORS.indexOf(color))}
                             className="popup-pins"
                             style={{
                                 backgroundColor: color,
