@@ -86,7 +86,7 @@ export function MessagePopup({ handlePopupClose, message, solution, colors }: po
                     <br />
                     Each guess is a row of 4 colored pins.
                     <br />
-                    After each guess, you'll get feedback in the form of two numbers to the left of the pins.
+                    After each guess, you&apos;ll get feedback in the form of two numbers to the left of the pins.
                 </p>
                 <h2
                     style={{
