@@ -8,10 +8,10 @@ import { Popup } from "./popup";
 import { resultNumbers } from "./resultNumbers";
 import { MessagePopup } from "./messagePopup";
 import { resetGame } from "./resetGame";
-import { finished } from "stream";
 import { colors } from "./pinColors";
 
-const generatedSolution = generateSolution(false);
+
+const generatedSolution = generateSolution();
 
 
 export default function Board() {
@@ -27,7 +27,7 @@ export default function Board() {
   const [activatedPins, setActivatedPins] = useState(
     Array(10).fill(null).map(() => [false, false, false, false])
   );
-  const [doubleColorsEnabled, setDoubleColors] = useState(false);
+
   const [selectedPin, setSelectedPin] = useState<{ row: number; pin: number } | null>(null);
   const [popupVisible, setPopupVisible] = useState(false);
   const [messagePopupVisible, setMessagePopupVisible] = useState(false);
@@ -135,6 +135,14 @@ export default function Board() {
           >
             show Solution
           </button>)}
+        <button
+          className="info-btn"
+          onClick={() => {
+            setMessagePopupVisible(true);
+            setPopupMessage("info");
+          }}
+        ></button>
+
       </div>
     </div>
   );

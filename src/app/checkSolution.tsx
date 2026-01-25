@@ -26,14 +26,14 @@ export function checkSolution(
   const positionOfCompletelyCorrect = [false, false, false, false];
 
   for (let i = 0; i !== 4; i++) {
-    // checking for completely correct colors
+
     if (currentGuess[i] == solution[i]) {
       numberOfCorrectColorsInCorrectPosition++;
       positionOfCompletelyCorrect[i] = true;
     }
   }
 
-  // checking for colors in the wrong position
+
   const solutionUsed = [...positionOfCompletelyCorrect];
 
   for (let i = 0; i !== 4; i++) {
