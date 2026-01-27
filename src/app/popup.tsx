@@ -1,12 +1,12 @@
 import { colors } from "./pinColors";
 
 
-type popupProps = {
+type PopupProps = {
     onColorSelect: (newColor: number) => void;
     handlePopupClose: () => void;
 };
 
-export function Popup({ onColorSelect, handlePopupClose }: popupProps) {
+export function Popup({ onColorSelect, handlePopupClose }: PopupProps) {
 
     return (
         <div

@@ -1,6 +1,6 @@
 import { colors } from "./pinColors";
 
-type pinProps = {
+type PinProps = {
   id: number;
   rowId: number;
   enabled: boolean;
@@ -10,7 +10,7 @@ type pinProps = {
   activatedPins: boolean[][];
 };
 
-export function Pin({ id, rowId, enabled, color, openPopup, selectedPin, activatedPins }: pinProps) {
+export function Pin({ id, rowId, enabled, color, openPopup, selectedPin, activatedPins }: PinProps) {
   function handleClick() {
     if (!enabled) {
       return;

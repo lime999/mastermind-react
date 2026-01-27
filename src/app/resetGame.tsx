@@ -4,7 +4,7 @@ export function resetGame(
     setActivatedPins: (value: boolean[][]) => void,
     setRound: (value: number) => void,
     setFinishedGame: (value: boolean) => void,
-    generateSolution: (value: boolean) => number[],
+    generateSolution: () => number[],
     setSolution: (value: number[]) => void,
 ) {
     setResults(
@@ -18,5 +18,5 @@ export function resetGame(
     );
     setRound(1);
     setFinishedGame(false);
-    setSolution(generateSolution(false));
+    setSolution(generateSolution());
 }

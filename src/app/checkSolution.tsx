@@ -27,7 +27,7 @@ export function checkSolution(
 
   for (let i = 0; i !== 4; i++) {
 
-    if (currentGuess[i] == solution[i]) {
+    if (currentGuess[i] === solution[i]) {
       numberOfCorrectColorsInCorrectPosition++;
       positionOfCompletelyCorrect[i] = true;
     }
@@ -39,7 +39,7 @@ export function checkSolution(
   for (let i = 0; i !== 4; i++) {
     if (!positionOfCompletelyCorrect[i]) {
       for (let a = 0; a !== 4; a++) {
-        if (currentGuess[i] == solution[a] && !solutionUsed[a]) {
+        if (currentGuess[i] === solution[a] && !solutionUsed[a]) {
           numberOfCorrectColorsInWrongPosition++;
           solutionUsed[a] = true;
           break;

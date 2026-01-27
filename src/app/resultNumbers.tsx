@@ -6,7 +6,7 @@ export function resultNumbers(
     return (
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((id) => (
             <div key={id} className="results"
-                onClick={() => { setMessagePopupVisible(true), setPopupMessage("resultsexplanantion") }}
+                onClick={() => { setMessagePopupVisible(true), setPopupMessage("resultsexplanation") }}
             >
                 <span style={{ color: '#1e9400ff' }}>{results[id][0]}</span>
                 |
