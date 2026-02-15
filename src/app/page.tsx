@@ -1,21 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { generateSolution } from "./generateSolution";
-import { checkSolution } from "./checkSolution";
-import { Row } from "./row";
-import { Popup } from "./popup";
-import { resultNumbers } from "./resultNumbers";
-import { MessagePopup } from "./messagePopup";
-import { resetGame } from "./resetGame";
-import { colors } from "./pinColors";
+import { generateSolution } from "../lib/generateSolution";
+import { checkSolution } from "../lib/checkSolution";
+import { Row } from "../components/Row";
+import { Popup } from "../components/Popup";
+import { resultNumbers } from "../components/ResultNumbers";
+import { MessagePopup } from "../components/MessagePopup";
+import { resetGame } from "../lib/resetGame";
+import { colors } from "../lib/pinColors";
 
-
-const generatedSolution = generateSolution();
-
+const initialSolution = generateSolution();
 
 export default function Board() {
-
   const [results, setResults] = useState<number[][]>(
     Array(10).fill(null).map(() => [0, 0])
   );
@@ -34,54 +31,98 @@ export default function Board() {
   const [popupMessage, setPopupMessage] = useState("");
   const [round, setRound] = useState(1);
   const [finishedGame, setFinishedGame] = useState(false);
-  const [solution, setSolution] = useState(generatedSolution);
+  const [solution, setSolution] = useState(initialSolution);
 
+  const handleColorChange = (newColor: number) => {
+    if (finishedGame || !selectedPin) return;
 
+    const { row: rowId, pin: pinId } = selectedPin;
 
-  const handleColorChange = (rowId: number, pinId: number, newColor: number) => {
-    if (finishedGame) {
-      return;
-    }
-    setSelectedPin({ row: rowId, pin: pinId });
-    setPopupVisible(true);
     setRowColors(prev => {
-      const updated = prev.map((row, idx) =>
-        idx === rowId
-          ? row.map((color, pIdx) => pIdx === pinId ? newColor : color)
-          : row
-      );
+      const updated = [...prev];
+      updated[rowId] = [...updated[rowId]];
+      updated[rowId][pinId] = newColor;
       return updated;
     });
+
     setActivatedPins(prev => {
-      const updated = prev.map((row, idx) =>
-        idx === rowId
-          ? row.map((activated, pIdx) => pIdx === pinId ? true : activated)
-          : row
-      );
+      const updated = [...prev];
+      updated[rowId] = [...updated[rowId]];
+      updated[rowId][pinId] = true;
       return updated;
     });
-    setSelectedPin(null);
   };
 
+  const handleCheckSolution = () => {
+    if (finishedGame) {
+      setPopupMessage("The game is over");
+      setMessagePopupVisible(true);
+      return;
+    }
+
+    if (round > 10) {
+      setPopupMessage("You lost :(");
+      setFinishedGame(true);
+      setMessagePopupVisible(true);
+      return;
+    }
+
+    if (activatedPins[round - 1].includes(false)) {
+      setPopupMessage("Please fill all pins before checking the solution");
+      setMessagePopupVisible(true);
+      return;
+    }
+
+    const currentGuess = rowColors[round - 1];
+    const { correctPosition, correctColor } = checkSolution(currentGuess, solution);
+
+    setResults(prev => {
+      const updated = [...prev];
+      updated[round - 1] = [correctPosition, correctColor];
+      return updated;
+    });
+
+    if (correctPosition === 4) {
+      setPopupMessage("Congratulations! You've guessed the solution!");
+      setFinishedGame(true);
+      setMessagePopupVisible(true);
+    } else if (round === 10) {
+      setPopupMessage("You lost :(");
+      setFinishedGame(true);
+      setMessagePopupVisible(true);
+    } else {
+      setRound(prev => prev + 1);
+    }
+  };
+
+  const handleReset = () => {
+    resetGame(
+      setResults,
+      setRowColors,
+      setActivatedPins,
+      setRound,
+      setFinishedGame,
+      generateSolution,
+      setSolution
+    );
+  };
 
   return (
-    <div
-      className="wrapper"
-    >
+    <div className="wrapper">
       {popupVisible && (
         <Popup
           onColorSelect={(newColor) => {
-            if (selectedPin) {
-              handleColorChange(selectedPin.row, selectedPin.pin, newColor);
-            }
-            setSelectedPin(null);
+            handleColorChange(newColor);
             setPopupVisible(false);
+            setSelectedPin(null);
           }}
           handlePopupClose={() => {
-            setPopupVisible(false)
+            setPopupVisible(false);
             setSelectedPin(null);
           }}
-        />)}
+        />
+      )}
+
       {messagePopupVisible && (
         <MessagePopup
           handlePopupClose={() => {
@@ -91,59 +132,71 @@ export default function Board() {
           message={popupMessage}
           solution={solution}
           colors={colors}
-        />)}
+        />
+      )}
 
       <div className="game">
         <div className="results-panel">
           {resultNumbers(results, setMessagePopupVisible, setPopupMessage)}
         </div>
         <div className="board">
-          {rowColors.map((rowColors, rowId) => (
+          {rowColors.map((colors, rowId) => (
             <Row
               key={rowId}
               rowId={rowId}
-              pinColors={rowColors}
-              enabled={round - 1 === rowId}
-              openPopup={(rowId, pinId) => { setPopupVisible(true); setSelectedPin({ row: rowId, pin: pinId }); }}
+              pinColors={colors}
+              enabled={!finishedGame && round - 1 === rowId}
+              openPopup={(rId, pId) => {
+                if (!finishedGame && round - 1 === rId) {
+                  setPopupVisible(true);
+                  setSelectedPin({ row: rId, pin: pId });
+                }
+              }}
               selectedPin={selectedPin}
               activatedPins={activatedPins}
             />
           ))}
         </div>
       </div>
+
       <div className="side-panel">
         <button
           className="check-solution-btn"
-          onClick={() => checkSolution(finishedGame, rowColors[round - 1], solution, round, (a: string) => { setMessagePopupVisible(true), setPopupMessage(a) }, setRound, setFinishedGame, activatedPins, setResults)}
+          onClick={handleCheckSolution}
+          disabled={finishedGame}
         >
           Verify guess
         </button>
 
         <button
           className="reset-btn"
-          onClick={() => resetGame(setResults, setRowColors, setActivatedPins, setRound, setFinishedGame, generateSolution, setSolution)}
+          onClick={handleReset}
         >
           Reset Game
         </button>
-        {finishedGame &&
-          (<button
+
+        {finishedGame && (
+          <button
             className="show-solution-btn"
             onClick={() => {
               setMessagePopupVisible(true);
               setPopupMessage("showsolution");
             }}
           >
-            show Solution
-          </button>)}
+            Show Solution
+          </button>
+        )}
+
         <button
           className="info-btn"
           onClick={() => {
             setMessagePopupVisible(true);
             setPopupMessage("info");
           }}
-        ></button>
-
+          aria-label="Info"
+        />
       </div>
     </div>
   );
 }
+

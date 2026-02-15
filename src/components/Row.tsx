@@ -1,4 +1,4 @@
-import { Pin } from "./pin";
+import { Pin } from "./Pin";
 
 type RowProps = {
   rowId: number;
