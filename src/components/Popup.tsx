@@ -1,4 +1,4 @@
-import { colors } from "./pinColors";
+import { colors } from "../lib/pinColors";
 
 
 type PopupProps = {
