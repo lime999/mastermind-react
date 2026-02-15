@@ -58,7 +58,7 @@ export function MessagePopup({ handlePopupClose, message, solution, colors }: Po
                 }}
                 className="pin"
             />
-        )); 
+        ));
         content = (
             <div>
                 <h2 style={headingStyle}>Solution:</h2>
