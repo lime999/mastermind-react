@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { generateSolution } from "../lib/generateSolution";
 import { checkSolution } from "../lib/checkSolution";
 import { Row } from "../components/Row";
@@ -9,6 +9,8 @@ import { resultNumbers } from "../components/ResultNumbers";
 import { MessagePopup } from "../components/MessagePopup";
 import { resetGame } from "../lib/resetGame";
 import { colors } from "../lib/pinColors";
+import { SolutionMessage } from "@/components/SolutionMessage";
+import { InfoMessage } from "@/components/InfoMessage"
 
 const initialSolution = generateSolution();
 
@@ -28,7 +30,7 @@ export default function Board() {
   const [selectedPin, setSelectedPin] = useState<{ row: number; pin: number } | null>(null);
   const [popupVisible, setPopupVisible] = useState(false);
   const [messagePopupVisible, setMessagePopupVisible] = useState(false);
-  const [popupMessage, setPopupMessage] = useState("");
+  const [popupMessage, setPopupMessage] = useState<string | React.ReactNode>("");
   const [round, setRound] = useState(1);
   const [finishedGame, setFinishedGame] = useState(false);
   const [solution, setSolution] = useState(initialSolution);
@@ -180,7 +182,9 @@ export default function Board() {
             className="show-solution-btn"
             onClick={() => {
               setMessagePopupVisible(true);
-              setPopupMessage("showsolution");
+              setPopupMessage(
+                SolutionMessage(solution, colors)
+              );
             }}
           >
             Show Solution
@@ -191,7 +195,9 @@ export default function Board() {
           className="info-btn"
           onClick={() => {
             setMessagePopupVisible(true);
-            setPopupMessage("info");
+            setPopupMessage(
+              InfoMessage()
+            );
           }}
           aria-label="Info"
         />

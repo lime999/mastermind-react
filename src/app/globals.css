@@ -106,10 +106,6 @@ body {
   font-size: 5.5vh;
 }
 
-.results:hover {
-  cursor: help
-}
-
 .results-panel {
   padding: 1vh 1vw;
   display: flex;
