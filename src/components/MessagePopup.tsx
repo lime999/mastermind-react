@@ -35,7 +35,7 @@ const modalContentStyle = {
 export function MessagePopup({ handlePopupClose, message, solution, colors }: PopupProps) {
 
 
-    let content = <h2 style={headingStyle}>{message}</h2>;
+    const content = <h2 style={headingStyle}>{message}</h2>;
 
 
     return (
